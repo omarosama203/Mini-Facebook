@@ -13,7 +13,6 @@ namespace DataAccessLayer.Models
         public string LastName { get; set; }
         public DateOnly Birthdate { get; set; }
         public string Gender { get; set; }
-        public string Country { get; set; }
         public string Img { get; set; }
     }
 }

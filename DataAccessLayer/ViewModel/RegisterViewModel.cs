@@ -27,16 +27,13 @@ namespace DataAccessLayer.ViewModel
         [DataType(DataType.Password)]
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
-        [Required]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         [Required]
         public DateOnly Birthdate { get; set; }
         [Required]
 
         public string Gender { get; set; }
-        [Required]
-        public string Country { get; set; }
         public string? Img { get; set; }
 
     }

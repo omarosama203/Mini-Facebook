@@ -47,7 +47,6 @@ namespace FaceBook.Controllers
                 user.PhoneNumber = userVm.PhoneNumber;
                 user.Birthdate = userVm.Birthdate;
                 user.Gender = userVm.Gender;
-                user.Country = userVm.Country;
                 user.Img = userVm.Img;
                 if (string.IsNullOrWhiteSpace(userVm.Img))
                 {
