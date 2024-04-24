@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Models;
+﻿using DataAccessLayer.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Interfaces
 {
-    public interface IDepartmentRepo
+    internal interface IAccountRepository
     {
-        public ICollection<Department> getAll();
+        public void Register(RegisterViewModel userVm);
     }
 }

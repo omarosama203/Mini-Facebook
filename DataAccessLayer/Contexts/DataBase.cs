@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccessLayer.Models;
+﻿using DataAccessLayer.Models;
+using DataAccessLayer.ViewModel;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Contexts
 {
-    public class DataBase:DbContext
+    public class DataBase : IdentityDbContext<Applicationuser>
     {
-       public DataBase(DbContextOptions<DataBase> options):base(options) { } 
-        public DbSet<Department> departments {  get; set; }
+        public DataBase(DbContextOptions options) : base(options) { }
+        public DbSet<RegisterViewModel> RegisterViewModel { get; set; } = default!;
+
     }
 
 }

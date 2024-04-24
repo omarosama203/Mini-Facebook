@@ -1,6 +1,7 @@
-using BusinessLayer.Interfaces;
-using BusinessLayer.Repositories;
+using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace FaceBook
 {
@@ -15,10 +16,10 @@ namespace FaceBook
             //allow dependency injection for database
             builder.Services.AddDbContext<DataAccessLayer.Contexts.DataBase>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("conn")) ;
+                options.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
             });
-            builder.Services.AddScoped<IDepartmentRepo,DepartmentRepo>(); // allow dependency inj for department repo
-            
+            builder.Services.AddIdentity<Applicationuser, IdentityRole>().AddEntityFrameworkStores<DataAccessLayer.Contexts.DataBase>();
+
 
             var app = builder.Build();
 
