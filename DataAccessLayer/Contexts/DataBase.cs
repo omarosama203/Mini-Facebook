@@ -9,6 +9,8 @@ namespace DataAccessLayer.Contexts
     {
         public DataBase(DbContextOptions options) : base(options) { }
         public DbSet<RegisterViewModel> RegisterViewModel { get; set; } = default!;
+        public DbSet<LoginViewModel> LoginViewModel { get; set; } = default!;
+
 
     }
 

@@ -76,5 +76,38 @@ namespace FaceBook.Controllers
             return View(userVm);
 
         }
+
+
+        [HttpGet]
+        public IActionResult login()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> login(LoginViewModel userVm)
+        {
+            if (ModelState.IsValid)
+            {
+                Applicationuser userModel = await userManger.FindByNameAsync(userVm.userName);
+                if (userModel != null)
+                {
+                    bool found = await userManger.CheckPasswordAsync(userModel, userVm.password);
+                    if (found)
+                    {
+                        await signInManager.SignInAsync(userModel, userVm.RememberMe);
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                ModelState.AddModelError("Password", " password or user name is wrong please try again");
+            }
+            return View(userVm);
+        }
+
+        public async Task<IActionResult> logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("login");
+        }
     }
 }
