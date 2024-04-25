@@ -1,3 +1,5 @@
+using BusinessLayer.Interfaces;
+using BusinessLayer.Repositories;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +21,7 @@ namespace FaceBook
                 options.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
             });
             builder.Services.AddIdentity<Applicationuser, IdentityRole>().AddEntityFrameworkStores<DataAccessLayer.Contexts.DataBase>();
-
+            builder.Services.AddScoped<IPostRepository, PostRepository>();
 
             var app = builder.Build();
 
@@ -40,7 +42,7 @@ namespace FaceBook
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Account}/{action=Register}/{id?}");
+                pattern: "{controller=Home}/{action=Index}");
 
             app.Run();
         }

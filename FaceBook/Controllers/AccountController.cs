@@ -51,21 +51,21 @@ namespace FaceBook.Controllers
                 user.PhoneNumber = userVm.PhoneNumber;
                 user.Birthdate = userVm.Birthdate;
                 user.Gender = userVm.Gender;
-                
 
-                /*  if (string.IsNullOrWhiteSpace(userVm.Img))
-                  {
-                      string defaultImgFileName = userVm.Gender.ToLower() == "male" ? "male.jpg" : "female.jpg";
-                      string defaultImgPath = Path.Combine(_webHostEnvironment.WebRootPath, "Img", defaultImgFileName);
-                      byte[] defaultImgBytes = await System.IO.File.ReadAllBytesAsync(defaultImgPath);
-                      user.Img = defaultImgFileName;
-                  }
-                  else
-                  {
-                
-                }*/
-                string imageName = ImageDocument.uploadFile(userVm.Image, "images");
-                user.Img = imageName;
+
+                if (userVm.Image == null)
+                {
+                    string defaultImgFileName = userVm.Gender.ToLower() == "male" ? "male.jpg" : "female.jpg";
+                    string defaultImgPath = Path.Combine(_webHostEnvironment.WebRootPath, "files/images", defaultImgFileName);
+                    byte[] defaultImgBytes = await System.IO.File.ReadAllBytesAsync(defaultImgPath);
+                    user.Img = defaultImgFileName;
+                }
+                else
+                {
+                    string imageName = ImageDocument.uploadFile(userVm.Image, "images");
+                    user.Img = imageName;
+
+                }
                 IdentityResult Result = await userManger.CreateAsync(user, userVm.Password);
                 if (Result.Succeeded)
                 {

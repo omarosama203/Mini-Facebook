@@ -2,6 +2,7 @@
 using DataAccessLayer.Contexts;
 using DataAccessLayer.Models;
 using DataAccessLayer.ViewModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,9 @@ namespace BusinessLayer.Repositories
     public class PostRepository : IPostRepository
     {
         DataBase db;
-        public PostRepository(DataBase database) { 
-        db = database;
+        public PostRepository(DataBase database)
+        {
+            db = database;
         }
         public void createPost(Post post)
         {
@@ -22,9 +24,9 @@ namespace BusinessLayer.Repositories
             db.SaveChanges();
         }
 
-       public void deletePost(int id)
+        public void deletePost(int id)
         {
-          
+
             db.Posts.Remove(getPostById(id));
             db.SaveChanges();
         }
@@ -32,17 +34,17 @@ namespace BusinessLayer.Repositories
         public Post getPostById(int id)
         {
             return db.Posts.FirstOrDefault(x => x.Id == id);
-            
+
         }
 
         public List<Post> getPostList()
         {
-            return db.Posts.OrderByDescending(post => post.Created).ToList();
+            return db.Posts.Include(p => p.User).OrderByDescending(post => post.Created).ToList();
         }
 
         public List<Post> getUserPosts(string userId)
         {
-            return db.Posts.Where(p=>p.UserId==userId).OrderByDescending(p=>p.Created).ToList();
+            return db.Posts.Where(p => p.UserId == userId).OrderByDescending(p => p.Created).ToList();
         }
 
         public void updatePost(Post post)
