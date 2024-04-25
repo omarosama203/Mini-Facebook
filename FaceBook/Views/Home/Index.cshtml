@@ -1,5 +1,4 @@
-﻿@model List<PostViewModel>;
-
+﻿
 @{
     Layout = "~/Views/Shared/_LoggedInLayout.cshtml";
     ViewData["Title"] = "Home Page";
@@ -40,9 +39,18 @@
                 @post.User.FirstName @post.User.LastName
                 <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">@timeElapsedText</span>
             </h4>
-            <a class="ms-auto">
-                <i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i>
-            </a>
+            @if (post.UserId == ViewBag.userid)
+            {
+                <a class="ms-auto">
+                   <form style="display: inline-block;" method="post" action="@Url.Action("deletePost", "Home")" onsubmit="return confirm('Are you sure you want to delete this Post?');">
+                      <input type="hidden" name="id" value="@post.Id" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                    <button onclick="editPost(@post.Id,'@post.Body')" class="btn btn-danger">Edit</button>
+                </a>
+               
+            }
+            
         </div>
         <div class="card-body p-0 me-lg-5">
             <p class="fw-500 text-grey-500 lh-26 font-xssss w-100 mb-2">
@@ -77,5 +85,6 @@
             </a>
         </div>
     </div>
+   
 
 }

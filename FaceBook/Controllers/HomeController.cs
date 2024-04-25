@@ -38,6 +38,7 @@ namespace FaceBook.Controllers
                 postsList.Add(postVM);
             }
             ViewBag.posts = postsList;
+            ViewBag.userid= user.Id;
             return View();
         }
         [HttpPost]
@@ -58,6 +59,18 @@ namespace FaceBook.Controllers
                 return RedirectToAction("Index", "Home");
             }
             return NoContent();
+        }
+        [HttpPost]
+        public async Task<IActionResult> deletePost(int id)
+        {
+            post.deletePost(id);
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpPost]
+        public IActionResult Edit(int id, string body)
+        {
+            post.updatePost(id, body);
+            return RedirectToAction("Index", "Home");
         }
 
     }
