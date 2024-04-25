@@ -40,7 +40,7 @@ namespace FaceBook
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Department}/{action=getAll}/{id?}");
+                pattern: "{controller=Account}/{action=Register}/{id?}");
 
             app.Run();
         }

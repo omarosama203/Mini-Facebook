@@ -14,5 +14,6 @@ namespace DataAccessLayer.Models
         public DateOnly Birthdate { get; set; }
         public string Gender { get; set; }
         public string Img { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

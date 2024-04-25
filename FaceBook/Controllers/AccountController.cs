@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using DataAccessLayer.Contexts;
 using DataAccessLayer.ViewModel;
+using System.Reflection.Metadata;
+using GemBox.Document;
+using System.Drawing;
+using FaceBook.Helpers;
 
 namespace FaceBook.Controllers
 {
@@ -47,18 +51,21 @@ namespace FaceBook.Controllers
                 user.PhoneNumber = userVm.PhoneNumber;
                 user.Birthdate = userVm.Birthdate;
                 user.Gender = userVm.Gender;
-                user.Img = userVm.Img;
-                if (string.IsNullOrWhiteSpace(userVm.Img))
-                {
-                    string defaultImgFileName = userVm.Gender.ToLower() == "male" ? "male.jpg" : "female.jpg";
-                    string defaultImgPath = Path.Combine(_webHostEnvironment.WebRootPath, "Img", defaultImgFileName);
-                    byte[] defaultImgBytes = await System.IO.File.ReadAllBytesAsync(defaultImgPath);
-                    user.Img = defaultImgFileName;
-                }
-                else
-                {
-                    user.Img = userVm.Img;
-                }
+                
+
+                /*  if (string.IsNullOrWhiteSpace(userVm.Img))
+                  {
+                      string defaultImgFileName = userVm.Gender.ToLower() == "male" ? "male.jpg" : "female.jpg";
+                      string defaultImgPath = Path.Combine(_webHostEnvironment.WebRootPath, "Img", defaultImgFileName);
+                      byte[] defaultImgBytes = await System.IO.File.ReadAllBytesAsync(defaultImgPath);
+                      user.Img = defaultImgFileName;
+                  }
+                  else
+                  {
+                
+                }*/
+                string imageName = ImageDocument.uploadFile(userVm.Image, "images");
+                user.Img = imageName;
                 IdentityResult Result = await userManger.CreateAsync(user, userVm.Password);
                 if (Result.Succeeded)
                 {

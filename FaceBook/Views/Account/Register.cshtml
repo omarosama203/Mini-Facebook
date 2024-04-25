@@ -28,7 +28,7 @@
                 <div class="card mt-5 pt-3 shadow-none border-0 ms-auto me-auto login-card">
                     <div class="card-body rounded-0 text-left">
                         <h2 class="fw-700 display1-size display2-md-size mb-4">Create <br>your account</h2>
-                    <form asp-action="Register">
+                    <form asp-action="Register" enctype="multipart/form-data">
 
                             <div class="form-group icon-input mb-3">
                                 <div class="row">
@@ -87,8 +87,8 @@
 
                             </div>
                         <div class="form-group icon-input mb-3">
-                            <input type="file" asp-for="Img" class="style2-input ps-2 form-control text-grey-900 font-xsss fw-600" placeholder="Image">
-                            <span asp-validation-for="Img" class="text-danger"></span>
+                            <input type="file" asp-for="Image" class="style2-input ps-2 form-control text-grey-900 font-xsss fw-600" placeholder="Image">
+                            <span asp-validation-for="Image" class="text-danger"></span>
                         </div>
 
                         <div class="form-group mb-1"><input type="submit" value="Create" class="form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0 "/></div>
