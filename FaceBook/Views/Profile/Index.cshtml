@@ -9,7 +9,7 @@
             </div>
             <div class="card-body p-0 position-relative">
                 <figure class="avatar position-absolute w100 z-index-1" style="top:-40px; left: 30px;">
-                    <img src="~/files/images/@ViewBag.user.Img" alt="image" class="float-right p-1 bg-white rounded-circle w-100">
+                    <img style="height:100px; width:100px !important; object-fit: fill;" src="~/files/images/@ViewBag.user.Img" alt="image" class="float-right p-1 bg-white rounded-circle w-100">
                 </figure>
                 <h4 class="fw-700 font-sm mt-2 mb-lg-5 mb-4 pl-15">
                     @ViewBag.user.FirstName @ViewBag.user.LastName <span class="fw-500 font-xssss text-grey-500 mt-1 mb-3 d-block">@@ @ViewBag.user.UserName</span>
@@ -89,7 +89,7 @@
                     {
                         <div class="col-6 mb-2 pe-1">
                             <a data-lightbox="roadtrip">
-                                <img src="~/files/images/@image" alt="image" class="img-fluid rounded-3 w-100">
+                                <img  src="~/files/images/@image" alt="image" class="img-fluid rounded-3 w-100">
                             </a>
                         </div>
                     }
@@ -109,7 +109,7 @@
             <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 my-3">
                 <div class="card-body p-0 d-flex">
                     <figure class="avatar me-3">
-                        <img src="~/files/images/@post.User.Img" alt="image" class="shadow-sm rounded-circle w45">
+                        <img style="height:45px;" src="~/files/images/@post.User.Img" alt="image" class="shadow-sm rounded-circle w45">
                     </figure>
                     <h4 class="fw-700 text-grey-900 font-xssss mt-1">
                         @{
