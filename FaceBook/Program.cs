@@ -3,7 +3,6 @@ using BusinessLayer.Repositories;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace FaceBook
 {
@@ -22,7 +21,8 @@ namespace FaceBook
             });
             builder.Services.AddIdentity<Applicationuser, IdentityRole>().AddEntityFrameworkStores<DataAccessLayer.Contexts.DataBase>();
             builder.Services.AddScoped<IPostRepository, PostRepository>();
-          builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 
             var app = builder.Build();
 

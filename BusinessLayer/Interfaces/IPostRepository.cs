@@ -10,11 +10,12 @@ namespace BusinessLayer.Interfaces
     public interface IPostRepository
     {
         public void createPost(Post post);
-        public void updatePost(int id,string body);
+        public void updatePost(int id, string body);
         public void deletePost(int id);
         public Post getPostById(int id);
         public List<Post> getPostList();
         public List<Post> getUserPosts(string userId);
-        
+        public List<string> GetPostsImages(string userId);
+
     }
 }

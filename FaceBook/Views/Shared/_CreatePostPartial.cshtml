@@ -1,7 +1,7 @@
 ﻿@model PostViewModel
 
- <form asp-action="createPost" enctype="multipart/form-data">
-    <div class="card w-100 shadow-xss rounded-xxl border-0 ps-4 pt-4 pe-4 pb-3 mb-3">
+<form asp-action="createPost" asp-controller="CreatePost" method="post" enctype="multipart/form-data">
+    <div class="card w-100 shadow-xss rounded-xxl border-0 ps-4 pt-4 pe-4 pb-3 my-3">
         <div class="card-body p-0 mt-3 position-relative">
             <figure class="avatar position-absolute ms-2 mt-1 top-5">
                 <img src="/files/images/@ViewBag.userImage" alt="image" class="shadow-sm rounded-circle w30">
@@ -15,7 +15,7 @@
                 <span class="d-none-xs">Photo/Video</span>
             </label>
             <span class="ms-auto">
-                 <button type="submit" class="border-0 bg-transparent font-xssss fw-600 text-grey-500 card-body p-0 d-flex align-items-center">
+                <button type="submit" class="border-0 bg-transparent font-xssss fw-600 text-grey-500 card-body p-0 d-flex align-items-center">
                     <i class="btn-round-sm font-xs text-primary feather-edit-3 me-2 bg-greylight"></i>
                     Create Post
                 </button>

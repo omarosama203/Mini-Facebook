@@ -36,26 +36,50 @@
                     }
                 }
 
-                @post.User.FirstName @post.User.LastName
+                <a asp-action="Index" asp-controller="Profile" asp-route-id="@post.User.UserName" class="fw-600 text-grey-900 font-xssss">@post.User.FirstName @post.User.LastName</a>
                 <span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">@timeElapsedText</span>
             </h4>
             @if (post.UserId == ViewBag.userid)
             {
-                <a class="ms-auto">
-                   <form style="display: inline-block;" method="post" action="@Url.Action("deletePost", "Home")" onsubmit="return confirm('Are you sure you want to delete this Post?');">
+                <a href="#" class="ms-auto" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu2">
+                    <div class="card-body p-0 d-flex">
+                        <i class="feather-edit-3 text-grey-500 me-3 font-lg"></i>
+                        <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">
+                            Edit Post <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Edit This Post</span>
+                        </h4>
+                    </div>
+                                       <form style="display: inline-block;" method="post" action="@Url.Action("deletePost", "CreatePost")" onsubmit="return confirm('Are you sure you want to delete this Post?');">
+
+                    <div class="card-body p-0 d-flex mt-2">
+                        <i class="feather-alert-circle text-grey-500 me-3 font-lg"></i>
+                            <input type="hidden" name="id" value="@post.Id" />
+
+                            <button type="submit" class="bg-transparent border-0 text-start fw-600 text-grey-900 font-xssss mt-0 me-4">
+                            Delete Post <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Delete This Post</span>
+                        </button>
+                    </div>
+                    </form>
+                </div>
+
+
+@*                 <a class="ms-auto">
+                   <form style="display: inline-block;" method="post" action="@Url.Action("deletePost", "CreatePost")" onsubmit="return confirm('Are you sure you want to delete this Post?');">
                       <input type="hidden" name="id" value="@post.Id" />
                         <button type="submit" class="btn btn-link"><i class="bi bi-x-circle-fill"></i></button>
                     </form>
 
                     
 
-                </a>
+                </a> *@
                
             }
             
         </div>
-        <div class="card-body p-0 me-lg-5">
-            <p class="fw-500 text-grey-500 lh-26 font-xssss w-100 mb-2">
+        <div class="card-body p-0 ms-lg-5">
+            <p class="fw-500 text-dark lh-26 font-xss w-100 mb-2 text-end">
                 @post.Body
             </p>
         </div>
