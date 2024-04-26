@@ -13,11 +13,13 @@ namespace FaceBook.Controllers
     {
         private readonly IPostRepository post;
         private readonly UserManager<Applicationuser> userManager;
+        //private readonly IUserRepository userRepository;
 
         public HomeController(IPostRepository post, UserManager<Applicationuser> userManager)
         {
             this.post = post;
             this.userManager = userManager;
+            //this.userRepository = user;
         }
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -66,12 +68,23 @@ namespace FaceBook.Controllers
             post.deletePost(id);
             return RedirectToAction("Index", "Home");
         }
-        [HttpPost]
-        public IActionResult Edit(int id, string body)
+      //  [HttpPost]
+       /* public IActionResult Edit(int id, string body)
         {
             post.updatePost(id, body);
             return RedirectToAction("Index", "Home");
-        }
+        }*/
+        /*[HttpGet]
+        public IActionResult Search(string searchValue)
+        {
+            if (string.IsNullOrEmpty(searchValue))
+            {
+                return NoContent();
+            }
+            var searchedUsers=userRepository.searchUser(searchValue);
+
+            return View(searchedUsers);
+        }*/
 
     }
 }

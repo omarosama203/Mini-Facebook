@@ -22,6 +22,7 @@ namespace FaceBook
             });
             builder.Services.AddIdentity<Applicationuser, IdentityRole>().AddEntityFrameworkStores<DataAccessLayer.Contexts.DataBase>();
             builder.Services.AddScoped<IPostRepository, PostRepository>();
+          builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             var app = builder.Build();
 
@@ -42,7 +43,7 @@ namespace FaceBook
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}");
+                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }
