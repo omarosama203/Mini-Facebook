@@ -7,6 +7,8 @@ using System.Reflection.Metadata;
 using GemBox.Document;
 using System.Drawing;
 using FaceBook.Helpers;
+using BusinessLayer.Repositories;
+using BusinessLayer.Interfaces;
 
 namespace FaceBook.Controllers
 {
@@ -16,13 +18,14 @@ namespace FaceBook.Controllers
         public UserManager<Applicationuser> userManger { get; }
         public SignInManager<Applicationuser> signInManager { get; }
         private readonly IWebHostEnvironment _webHostEnvironment;
-
-        public AccountController(UserManager<Applicationuser> userManger, SignInManager<Applicationuser> signInManager, IWebHostEnvironment webHostEnvironment)
+        public IUserRepository UserRepository { get; }
+        public AccountController(UserManager<Applicationuser> userManger, SignInManager<Applicationuser> signInManager, IWebHostEnvironment webHostEnvironment, IUserRepository userRepository)
 
         {
             this.userManger = userManger;
             this.signInManager = signInManager;
             this._webHostEnvironment = webHostEnvironment;
+            this.UserRepository = userRepository;
         }
         [HttpGet]
         public IActionResult Register()
@@ -115,6 +118,47 @@ namespace FaceBook.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("login");
+        }
+        public IActionResult Setting()
+        {
+            return View();
+        }
+        public IActionResult AccountInformation()
+        {
+            var currentUserId = userManger.GetUserId(HttpContext.User);
+            var user = UserRepository.getUserById(currentUserId);
+            AccountViewModel userVm = new AccountViewModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName=user.UserName,
+                Email = user.Email,
+                Password = user.PasswordHash,
+                PhoneNumber = user.PhoneNumber,
+                ImagePath = user.Img
+            };
+            return View(userVm);
+        }
+        [HttpPost]
+        public IActionResult EditUser([FromForm]AccountViewModel userVm)
+        {
+            var currentUserId = userManger.GetUserId(HttpContext.User);
+            var user = UserRepository.getUserById(currentUserId);
+            user.FirstName = userVm.FirstName;
+            user.LastName = userVm.LastName;
+            user.Email = userVm.Email;
+            user.PhoneNumber = userVm.PhoneNumber;
+            if (userVm.Image != null)
+            {
+                string imageName = ImageDocument.uploadFile(userVm.Image, "images");
+                user.Img = imageName;
+            }
+            if(userVm.Password != null)
+            {
+                user.PasswordHash = userManger.PasswordHasher.HashPassword(user,userVm.Password);
+            }
+            UserRepository.EditUser(user);
+            return RedirectToAction("AccountInformation");
         }
     }
 }

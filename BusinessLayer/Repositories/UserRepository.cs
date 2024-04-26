@@ -28,5 +28,15 @@ namespace BusinessLayer.Repositories
            return  users.OrderBy(u => random.Next()).Take(3).ToList();
             
         }
+        public Applicationuser getUserById(string id)
+        {
+            return db.Users.FirstOrDefault(u => u.Id == id);
+        }
+        public Applicationuser EditUser(Applicationuser user) 
+        {
+            db.Users.Update(user);
+            db.SaveChanges();
+            return user;
+        }
     }
 }

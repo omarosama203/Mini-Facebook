@@ -15,7 +15,7 @@
                     @ViewBag.user.FirstName @ViewBag.user.LastName <span class="fw-500 font-xssss text-grey-500 mt-1 mb-3 d-block">@@ @ViewBag.user.UserName</span>
                 </h4>
                 <div class="d-flex align-items-center justify-content-center position-absolute-md right-15 top-0 me-2">
-                    <a href="#" id="dropdownMenu4" class="d-none d-lg-block bg-greylight btn-round-lg ms-2 rounded-3 text-grey-700" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a asp-controller="Account" asp-action="Setting"  class="d-none d-lg-block bg-greylight btn-round-lg ms-2 rounded-3 text-grey-700" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="ti-more font-md tetx-dark"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu4">
@@ -71,12 +71,12 @@
                 </h4>
             </div>
             <div class="card-body d-flex pt-0">
-                <i class="feather-map-pin text-grey-500 me-3 font-lg"></i>
-                <h4 class="fw-700 text-grey-900 font-xssss mt-1">Flodia, Austia </h4>
+                <i class="feather-user text-grey-500 me-3 font-lg"></i>
+                <h4 class="fw-700 text-grey-900 font-xssss mt-1 text-capitalize">@ViewBag.user.Gender </h4>
             </div>
             <div class="card-body d-flex pt-0">
-                <i class="feather-users text-grey-500 me-3 font-lg"></i>
-                <h4 class="fw-700 text-grey-900 font-xssss mt-1">Genarel Group</h4>
+                <i class="feather-calendar text-grey-500 me-3 font-lg"></i>
+                <h4 class="fw-700 text-grey-900 font-xssss mt-1">@ViewBag.user.Birthdate</h4>
             </div>
         </div>
         <div class="card w-100 shadow-xss rounded-xxl border-0 mb-3">

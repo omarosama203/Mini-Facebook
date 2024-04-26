@@ -11,6 +11,8 @@ namespace BusinessLayer.Interfaces
     {
         public List<Applicationuser> searchUser(string name);
         public List<Applicationuser> getUsers();
+        public Applicationuser getUserById(string id);
+        public Applicationuser EditUser(Applicationuser user);
     }
     
 }
