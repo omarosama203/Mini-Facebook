@@ -17292,3 +17292,42 @@ select.sort {
         font-size: 16px
     }
 }
+
+
+
+/* Popup container */
+.popup-container {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+}
+
+/* Popup content */
+.popup-content {
+    background-color: white;
+    margin: 20% auto; /* Center vertically and horizontally */
+    padding: 20px;
+    width: 80%;
+    max-width: 650px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+
+/* Close button */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close-btn:hover,
+    .close-btn:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
