@@ -10,7 +10,7 @@ namespace BusinessLayer.Interfaces
     public interface IUserRepository
     {
         public List<Applicationuser> searchUser(string name);
-        public List<Applicationuser> getUsers();
+        public List<Applicationuser> getUsers(string id );
         public Applicationuser getUserById(string id);
         public Applicationuser EditUser(Applicationuser user);
     }

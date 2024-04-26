@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace FaceBook.Controllers
 {
     [Authorize]
@@ -43,24 +44,37 @@ namespace FaceBook.Controllers
             ViewBag.userid = user.Id;
             return View();
         }
-
-        //  [HttpPost]
-        /* public IActionResult Edit(int id, string body)
-         {
-             post.updatePost(id, body);
-             return RedirectToAction("Index", "Home");
-         }*/
-        /*[HttpGet]
-        public IActionResult Search(string searchValue)
+        [HttpGet]
+        public IActionResult EditPost(int id)
         {
-            if (string.IsNullOrEmpty(searchValue))
+            var item = this.post.getPostById(id);
+            PostViewModel postVM = new PostViewModel
             {
-                return NoContent();
+                Id = item.Id,
+                Body = item.Body,
+                Image = item.Image,
+                Created = item.Created,
+                UserId = item.UserId,
+                User = item.User
+            };
+            return View(postVM);
+        }
+        [HttpPost]
+        public IActionResult EditPost(PostViewModel post)
+        {
+            var item= this.post.getPostById(post.Id);
+            item.Body = post.Body;
+            if (post.ImageFile != null)
+            {
+                string imageName = ImageDocument.uploadFile(post.ImageFile, "images");
+                item.Image = imageName;
             }
-            var searchedUsers=userRepository.searchUser(searchValue);
+            this.post.updatePost(item);
+            return RedirectToAction("Index");
 
-            return View(searchedUsers);
-        }*/
+        }
+
+        
 
     }
 }

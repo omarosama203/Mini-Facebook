@@ -6,7 +6,7 @@ namespace FaceBook.Models
 {
     public class PostViewModel
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Body { get; set; }
         public string? Image { get; set; }

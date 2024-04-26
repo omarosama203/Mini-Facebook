@@ -52,10 +52,9 @@ namespace BusinessLayer.Repositories
             return db.Posts.Where(p => p.UserId == userId).OrderByDescending(p => p.Created).ToList();
         }
 
-        public void updatePost(int id, string body)
+        public void updatePost(Post post)
         {
-            var post = db.Posts.FirstOrDefault(x => x.Id == id);
-            post.Body = body;
+           
             db.Posts.Update(post);
             db.SaveChanges();
         }

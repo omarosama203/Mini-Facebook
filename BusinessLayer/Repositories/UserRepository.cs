@@ -21,11 +21,11 @@ namespace BusinessLayer.Repositories
         {
             return db.Users.Where(u => (u.FirstName + " " + u.LastName).ToLower().Contains(name.ToLower())).ToList();
         }
-        public List<Applicationuser> getUsers()
+        public List<Applicationuser> getUsers(string id )
         {
             var users=db.Users.ToList();
             var random = new Random();
-           return  users.OrderBy(u => random.Next()).Take(3).ToList();
+           return  users.Where(u=>u.Id!=id).OrderBy(u => random.Next()).Take(3).ToList();
             
         }
         public Applicationuser getUserById(string id)
